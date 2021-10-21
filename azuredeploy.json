@@ -1,81 +1,23 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
             "type": "string",
-            "defaultValue": "jraj-tags-keyvault"
+            "defaultValue": "MSI-fihe-02",
         },
         "location": {
             "type": "string",
-            "defaultValue": "eastus2"
-        },
-        "sku": {
-            "type": "string",
-            "defaultValue": "Standard"
-        },
-        "tenant": {
-            "type": "string",
-            "defaultValue": "f686d426-8d16-42db-81b7-ab578e110ccd"
-        },
-        "enabledForDeployment": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "enabledForTemplateDeployment": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "enabledForDiskEncryption": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "enableRbacAuthorization": {
-            "type": "bool",
-            "defaultValue": false
-        },
-        "enableSoftDelete": {
-            "type": "bool",
-            "defaultValue": true
-        },
-        "softDeleteRetentionInDays": {
-            "type": "int",
-            "defaultValue": 10
-        },
-        "networkAcls": {
-            "type": "object",
-            "defaultValue": {
-                "defaultAction": "allow",
-                "bypass": "AzureServices",
-                "ipRules": [],
-                "virtualNetworkRules": []
-            }
+            "defaultValue": "SOUTHEAST ASIA",
         }
     },
-    "variables": {},
     "resources": [
         {
-            "apiVersion": "2018-02-14",
+            "apiVersion": "2018-11-30",
             "name": "[parameters('name')]",
             "location": "[parameters('location')]",
-            "type": "Microsoft.KeyVault/vaults",
-            "properties": {
-                "enabledForDeployment": "[parameters('enabledForDeployment')]",
-                "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
-                "enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]",
-                "enableRbacAuthorization": "[parameters('enableRbacAuthorization')]",
-                "tenantId": "[parameters('tenant')]",
-                "sku": {
-                    "name": "[parameters('sku')]",
-                    "family": "A"
-                },
-                "enableSoftDelete": "[parameters('enableSoftDelete')]",
-                "softDeleteRetentionInDays": "[parameters('softDeleteRetentionInDays')]",
-                "networkAcls": "[parameters('networkAcls')]"
-            },
-            "tags": {},
-            "dependsOn": []
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "properties": {}
         }
-    ],
-    "outputs": {}
+    ]
 }
